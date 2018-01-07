@@ -1,0 +1,9 @@
+{
+    "description": "description for example product two",
+    "terms": null,
+    "subscriptionRequired": false,
+    "approvalRequired": null,
+    "subscriptionsLimit": null,
+    "state": "notPublished",
+    "apis": []
+}

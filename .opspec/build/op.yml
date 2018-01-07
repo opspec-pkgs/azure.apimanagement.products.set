@@ -1,0 +1,25 @@
+name: build
+description: builds the package
+inputs:
+  version:
+    string:
+      constraints: { format: semver }
+      default: 0.0.0
+  pkg:
+    dir:
+      default: .
+outputs:
+  imageTar:
+    file:
+      description: tar of the built image
+run:
+  serial:
+    - op:
+        pkg: { ref: test }
+        inputs: { pkg }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/docker.image.build#2.0.0 }
+        inputs:
+          dockerfile: $(/Dockerfile)
+          imageName: 'opspecpkgs/azure.apimanagement.products.set:$(version)'
+        outputs: { imageTar }
