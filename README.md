@@ -47,12 +47,8 @@ op:
     loginTenantId:
     resourceGroup:
     apiManagementServiceName:
-    apiCredentialsKey:
     products:
     # begin optional args
-    apiCredentialsIdentifier:
-    accessTokenMinutesValid:
-    contentType:
     loginType:
     variables:
     # end optional args

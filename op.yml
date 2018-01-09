@@ -31,26 +31,6 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: name of the api management service
-  apiCredentialsIdentifier:
-    string:
-      constraints: { minLength: 1 }
-      description: the identifier for API management under security > credentials
-      default: integration
-  apiCredentialsKey:
-    string:
-      constraints: { minLength: 1 }
-      description: api management primary or secondary key under security > credentials
-      isSecret: true
-  accessTokenMinutesValid:
-    number:
-      constraints: { minimum: 1, format: integer }
-      description: the number of minutes the access token is valid
-      default: 60
-  contentType:
-    string:
-      constraints: { minLength: 1 }
-      description: expects a swagger file by default
-      default: 'application/vnd.swagger.doc+json'
   products:
     dir:
       description: |
@@ -76,14 +56,6 @@ run:
           templates: $(products)
         outputs:
           result: result
-    - op:
-        pkg: { ref: github.com/opspec-pkgs/azure.apimanagement.sas-token.generate#1.0.0 }
-        inputs: 
-          id: $(apiCredentialsIdentifier)
-          key: $(apiCredentialsKey)
-          minutesValid: $(accessTokenMinutesValid)
-        outputs:
-          sasToken:
     - container:
         image: { ref: 'opspecpkgs/azure.apimanagement.products.set:1.0.0' }
         cmd: [node, /index.js ]
@@ -97,5 +69,3 @@ run:
           loginType:
           resourceGroup:
           apiManagementServiceName:
-          contentType:
-          sasToken:
