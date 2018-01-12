@@ -55,7 +55,7 @@ const getApiIds = async (credentials, apis) => {
     if (apis.length > 0) {
         let apisRef = [];
 
-        for (i = 0; i < apis.length; i++) {
+        for (let i = 0; i < apis.length; i++) {
             let apiId = await apiMgmtApi.getIdByName(credentials, apis[i]);
             if(!apiId) {
                 throw new Error(`api ${apis[i]} not found, create API before running this pkg`);
