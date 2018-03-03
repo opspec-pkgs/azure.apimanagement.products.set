@@ -59,8 +59,12 @@ run:
     - container:
         image: { ref: 'opspecpkgs/azure.apimanagement.products.set:1.0.0' }
         cmd: [node, /index.js ]
-        dirs: { /resources: $(result) }
-        files: { /index.js, /apiMgmtProduct.js, /apiMgmtApi.js }
+        dirs:
+          /resources: $(result)
+        files:
+          /index.js:
+          /apiMgmtProduct.js:
+          /apiMgmtApi.js:
         envVars:
           subscriptionId:
           loginId:
